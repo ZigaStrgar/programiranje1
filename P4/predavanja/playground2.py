@@ -47,4 +47,10 @@ def vsa_prastevila(n):
     return s
 
 
+def kvadrat_kub(x):
+    return x ** 2, x ** 3
+
+# x, y = kvadrat_kub(x)
+
+
 print(vsa_prastevila(100))

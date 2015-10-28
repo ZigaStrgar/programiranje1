@@ -3,3 +3,12 @@ x = y = 0; isto kot x = 0, y = 0
 last_lat, last_lng = lat, lng
 from itertools import permutations ; sestavi vse možne kombinacije iz danega seznama. Npr 4 kraji 4! -> 24 kombinacij
 imena.append() #Dodajanje elementov v seznam
+ime[2:-2]. Odbije 2 na začetku, 2 na koncu
+ime[:5]. Prvih 5
+ime[:-3]. Brez zadnjih treh
+ime[3:len(ime)] == ime[3:]
+ime[:] - Vse izpiši
+ime[1:7:2] - Preskakuj za 2
+ime[::-1] - Obrni string
+Parjenje terk :)
+zip(kraji, kraji[1:])
