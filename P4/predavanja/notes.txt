@@ -1,0 +1,5 @@
+Predavanje 4
+x = y = 0; isto kot x = 0, y = 0
+last_lat, last_lng = lat, lng
+from itertools import permutations ; sestavi vse možne kombinacije iz danega seznama. Npr 4 kraji 4! -> 24 kombinacij
+imena.append() #Dodajanje elementov v seznam

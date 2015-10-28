@@ -1,0 +1,9 @@
+tuple uporabljamo kot seznam, samo, da se podatkov ne da spreminjati
+
+podatki = {
+   "Anže": (74, False),...
+}
+
+a, b = b, a - zamenjava vrednosti
+
+zip - funkcija naredi seznam parov
