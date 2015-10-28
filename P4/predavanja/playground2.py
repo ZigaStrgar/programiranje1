@@ -26,7 +26,17 @@ def vsa_popolna(n):
 
 
 def prastevilo(n):
-    return len(delitelji(n)) == 1
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+
+def obstaja_sodo(s):  # Ob praznem seznamu vrne False
+    for e in s:
+        if e % 2 == 0:
+            return True
+    return False
 
 
 def vsa_prastevila(n):
@@ -36,6 +46,5 @@ def vsa_prastevila(n):
             s.append(i)
     return s
 
+
 print(vsa_prastevila(100))
-
-
