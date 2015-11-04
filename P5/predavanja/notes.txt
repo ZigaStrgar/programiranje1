@@ -1,0 +1,19 @@
+Moduli
+
+dir(ime modula) - izpiše kaj vse ima modul
+
+.append je metoda objekta npr. list
+
+.endswith - se konča z ...
+
+.find vrne -1 če ne najde
+.index vrne napako
+
+.strip odstrani nonprintable char
+.lstrip na levi odstrani
+.rstrip na desni odstrani
+
+.pop() Vrne in vzame iz seznama
+.pop(2) Vrne in vzame #2 element seznama
+.reverse() Zamenja elemente
+.insert(2, "Cene") Da na 2. mesto
