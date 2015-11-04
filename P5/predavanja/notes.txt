@@ -17,3 +17,7 @@ dir(ime modula) - izpiše kaj vse ima modul
 .pop(2) Vrne in vzame #2 element seznama
 .reverse() Zamenja elemente
 .insert(2, "Cene") Da na 2. mesto
+
+from ime_datoteke import *
+import moj_modul
+Mora biti v isti mapi,
