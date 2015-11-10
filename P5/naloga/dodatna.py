@@ -26,15 +26,6 @@ def correct_data(row):
     return row
 
 
-def fix_string(string):
-    string = string.replace("\x8a", "Š")
-    string = string.replace("\xc8", "Č")
-    string = string.replace("\xd0", "Đ")
-    string = string.replace("\xc6", "Ć")
-    string = string.replace("\x8e", "Ž")
-    return string
-
-
 def dodatna(url):
     data = get_data(url)  # Create and send request
     file = open(file_name(url), 'w+')  # Trying to create a new file or open one
@@ -56,7 +47,7 @@ dodatna("http://timingljubljana.si/lm/42Z.asp")  # Ženske 42km
 dodatna("http://timingljubljana.si/lm/21M.asp")  # Moški 21km
 dodatna("http://timingljubljana.si/lm/21Z.asp")  # Ženske 21km
 dodatna("http://timingljubljana.si/lm/10M.asp")  # Moški 10km
-dodatna("http://timingljubljana.si/lm/10Z.asp")  # Ženske 10km  #  Že imamo :)
+# dodatna("http://timingljubljana.si/lm/10Z.asp")  # Ženske 10km  #  Že imamo :)
 dodatna("http://timingljubljana.si/lm/HM.asp")  # Handbike moški 21km
 dodatna("http://timingljubljana.si/lm/HZ.asp")  # Handbike ženske 21km
 dodatna("http://timingljubljana.si/lm/DPMC.asp")  # Državno prvenstvo moški 42km
