@@ -1,0 +1,7 @@
+return ":".join([str(h), str(m), str(s)])
+return "{:02}:{:02}:{02}".format(h, m, s) # notacija v novejši verziji pythona
+
+sorted() - prebavi vse, razen tuple!
+sorted("Benjamin") - a, b, e, i, j, m, n, n
+
+TIL for v Pythonu ima else :S

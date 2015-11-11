@@ -1,147 +1,86 @@
-# Zelo dodatna naloga spodaj :)
-
-import re
-import urllib.request
-
-
-def v_sekunde(time):
-    seconds = 0
-    multiply = 3600
-    for part in time.split(":"):
-        seconds += int(part) * multiply
-        multiply /= 60
-    return int(seconds)
+def v_sekunde(s):
+    h, m, s = s.split(":")
+    return int(h) * 3600 + int(m) * 60 + int(s)
 
 
-def iz_sekund(time):
-    hours = time // 3600
-    time -= hours * 3600
-    minutes = time // 60
-    time -= minutes * 60
-    return str(hours) + ":" + str(minutes) + ":" + str(time)
+def podatki(vrstica):
+    mesto, stevilka, ime, leto, drzava, cas1, cas2 = vrstica.split("\t")
+    return ime, int(leto), v_sekunde(cas1), v_sekunde(cas2)
 
 
-def podatki(s):
-    sez = []
-    elements = s.split("\t")
-    sez.append(elements[2])
-    sez.append(int(elements[3]))
-    sez.append(v_sekunde(elements[5]))
-    sez.append(v_sekunde(elements[6]))
-    return tuple(sez)
+def pospesek(vrstica):
+    ime, leto, cas1, cas2 = podatki(vrstica)
+    return (cas2 - cas1) / cas1
 
 
-def pospesek(row):
-    return (podatki(row)[3] - podatki(row)[2]) / podatki(row)[2]
+def naj_pospesek(vrstice):
+    return podatki(min(vrstice, key = pospesek))[0]
 
 
-def naj_pospesek(rows):
-    highest = None
-    runner = []
-    for row in rows:
-        current = pospesek(row)
-        if not highest or current < highest:
-            highest = current
-            runner = podatki(row)
-    return runner[0]
+def vsi_pospeseni(vrstice, faktor):
+    pospeseni = []
+    for vrsica in vrstice:
+        ime, leto, cas1, cas2 = podatki(vrsica)
+        if cas2 - cas1 <= cas1 * faktor:
+            pospeseni.append(ime)
+    return pospeseni
 
 
-def vsi_pospeseni(rows, factor):
-    sez = []
-    for row in rows:
-        if pospesek(row) <= factor:
-            sez.append(podatki(row)[0])
-    return sez
+def vsi_pospeseni(vrstice, faktor):
+    return [podatki(vrstica)[0] for vrstica in vrstice if pospesek(vrstica) <= faktor]
 
 
-def leta(rows):
-    years = []
-    for row in rows:
-        if podatki(row)[1] not in years:
-            years.append(podatki(row)[1])
-    return sorted(years)
+def leta(vrstice):
+    s = []
+    for vrstica in vrstice:
+        ime, leto, cas1, cas2 = podatki(vrstica)
+        if not leto in s:
+            s.append(leto)
+    return sorted(s)
 
 
-def tekaci_leta(rows, year):
-    sez = []
-    for row in rows:
-        runner = podatki(row)
-        if runner[1] == year:
-            sez.append(runner[0])
-    if len(sez) > 1:
-        return ", ".join(sez[:-1]) + " in " + sez[-1]
-    else:
-        return ", ".join(sez)
+def tekaci_leta(vrstice, leto):
+    imena = []
+    for vrstica in vrstice:
+        ime, leto1, cas1, cas2 = podatki(vrstica)
+        if leto1 == leto:
+            imena.append(ime)
+    if not imena:
+        return ""
+    if len(imena) == 1:
+        return imena[0]
+    return ", ".join(imena[:-1]) + " in " + imena[-1]
 
 
-def najboljsi_po_letih(rows):
-    sez_rows = []
-    for row in rows:
-        sez_rows.append(row)
-    sez = []
-    for year in leta(sez_rows):
-        best = None
-        best_name = None
-        for row in sez_rows:
-            data = podatki(row)
-            if data[1] == year:
-                if not best or best > data[3]:
-                    best = data[3]
-                    best_name = data[0]
-        sez.append((year, best_name))
-    return sez
+def najboljsi_po_letih(vrstice):
+    rekordeji = []
+    for vrstica in vrstice:
+        ime, leto, cas1, cas2 = podatki(vrstica)
+        for i, (leto1, ime2, cas) in enumerate(rekordeji):
+            if leto == leto1:
+                if cas2 < cas:
+                    rekordeji[i] = (leto, ime2, cas2)
+                break
+        else:
+            rekordeji.append((leto, ime, cas2))
+    po_letih = []
+    for leto, ime, cas in rekordeji:
+        po_letih.append((leto, ime))
+    return sorted(po_letih)
 
 
-def get_data(url):
-    req = urllib.request.Request(url)
-    req.add_header("Content-Type", "text/html; charset=utf-8")
-    req.add_header('Accept-Encoding', 'utf-8')
-    resp = urllib.request.urlopen(req)
-    respdata = resp.read().decode("windows-1250")
-    return re.findall('<TR class=r0>(.*?)</TR>', str(respdata))
-
-
-def file_name(url):
-    name = url.split("/")
-    name = name[-1]
-    name = name.split(".")
-    return name[0].lower() + ".txt"
-
-
-def correct_data(row):
-    row = row.replace("<TD>", "<td>")
-    row = row.replace("</TD>", "</td>")
-    row = row.replace("<td>", "")
-    row = row.split("</td>")
-    return row
-
-
-def dodatna(url):
-    data = get_data(url)  # Create and send request
-    file = open(file_name(url), 'w+')  # Trying to create a new file or open one
-
-    for row in data:
-        row = correct_data(row)  # Correctly split and replace data in table
-        count = 0
-        line = []
-        while count < len(row) - 2:
-            line.append(row[count])
-            count += 1
-        string = "\t".join(line)
-        file.write(string + "\n")
-    file.close()
-
-# dodatna("http://timingljubljana.si/lm/42M.asp")  # Moški 42km
-# dodatna("http://timingljubljana.si/lm/42Z.asp")  # Ženske 42km
-# dodatna("http://timingljubljana.si/lm/21M.asp")  # Moški 21km
-# dodatna("http://timingljubljana.si/lm/21Z.asp")  # Ženske 21km
-# dodatna("http://timingljubljana.si/lm/10M.asp")  # Moški 10km
-# dodatna("http://timingljubljana.si/lm/HM.asp")  # Handbike moški 21km
-# dodatna("http://timingljubljana.si/lm/HZ.asp")  # Handbike ženske 21km
-# dodatna("http://timingljubljana.si/lm/DPMC.asp")  # Državno prvenstvo moški 42km
-# dodatna("http://timingljubljana.si/lm/DPZC.asp")  # Državno prvenstvo ženske 42km
-# dodatna("http://timingljubljana.si/lm/RZ.asp")  # Rolerji moški
-# dodatna("http://timingljubljana.si/lm/RM.asp")  # Rolerji ženske
+def najboljsi_po_letih(vrstice):
+    rekorderji = [("", 42)] * 115
+    for vrstica in vrstice:
+        ime, leto, cas1, cas2 = podatki(vrstica)
+        naj_ime, naj_cas = rekorderji[leto - 1900]
+        if naj_ime == "" or cas2 < naj_cas:
+            rekorderji[leto - 1900] = ime, cas2
+    po_letih = []
+    for leto, (ime, cas) in enumerate(rekorderji):
+        if ime:
+            po_letih.append((leto + 1900, ime))
+    return po_letih
 
 
 import unittest
