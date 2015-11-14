@@ -1,3 +1,6 @@
+import collections
+
+
 def v_sekunde(s):
     h, m, s = s.split(":")
     return int(h) * 3600 + int(m) * 60 + int(s)
@@ -82,6 +85,41 @@ def najboljsi_po_letih(vrstice):
             po_letih.append((leto + 1900, ime))
     return po_letih
 
+
+def leta(vrstice):
+    vsa_leta = set()
+    for vrstica in vrstice:
+        ime, leto, cas1, cas2 = podatki(vrstica)
+        vsa_leta.add(leto)
+    return sorted(vsa_leta)
+
+
+vrstice = open("10z.txt")
+
+# Navadi se uporabljat defaultdict
+# Slaba navada
+# po_letih = {}
+# for vrstica in vrstice:
+#    ime, leto, cas1, cas2 = podatki(vrstica)
+#    if leto in po_letih:
+#        po_letih[leto].append(ime)
+#    else:
+#        po_letih[leto] = [ime]
+
+# Dobra navada
+po_letih = collections.defaultdict(list)
+for vrstica in vrstice:
+    ime, leto, cas1, cas2 = podatki(vrstica)
+    po_letih[leto] += [ime]
+print(po_letih[1985])
+
+print(sorted(po_letih))  # Zanka for izpisuje ključe, tako da to dela
+
+meti = [5, 1, 6, 1, 3, 6, 4, 4, 2]
+
+pogostosti = collections.Counter(meti)
+
+pogostosti = collections.Counter(meti)
 
 import unittest
 

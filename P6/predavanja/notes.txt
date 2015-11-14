@@ -4,4 +4,40 @@ return "{:02}:{:02}:{02}".format(h, m, s) # notacija v novejši verziji pythona
 sorted() - prebavi vse, razen tuple!
 sorted("Benjamin") - a, b, e, i, j, m, n, n
 
-TIL for v Pythonu ima else :S
+TIL for zanka v Pythonu ima else :S
+
+Indeksi v slovarju so lahko marsikaj, v seznamu samo cela števila
+
+for e in dictionary:
+    e == ključ
+
+dictionary.items()  # Pari (ključ, vrednost)
+dictionary.keys()  # Dobi ključe
+dictionary.values()  # dobi vrednosti
+
+dictionary.get("Ključ", privzeta_vrednost)  # Uporabi samo če ne veš ali ključ obstaja
+
+import collections  # Zlo cool knjižnica
+
+{5: 1, 8: 12}  # Tudi je slovar s številskimi ključi
+
+s = {[4, 7, 1]: "Ana"}  # E to pa ne gre
+s = {(4, 7, 1): "Ana"}  # E to pa gre
+
+Slovar brez vrednosti kličemo množica
+s = {1, 2, 3}
+s.add(4) - Doda 4 v množico, ne doda če že obstaja
+s.remove(3) - Odstrani 3 iz množice
+s = {} - TO JE SLOVAR NE MNOŽICA
+s = set() - TO JE PRAZNA MNOŽICA
+
+set("Benjamin") - Naredi množico iz črk
+len(set("Benjamin")) - 7
+len("Benjamin") - 8
+
+ime = "benjamin"
+ime1 = "robi"
+ime2 = "berta"
+ime3 = "oto"
+
+m_ime = set(ime)
