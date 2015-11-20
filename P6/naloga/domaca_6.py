@@ -28,11 +28,7 @@ def prestej_barvo(sahovnica, barva):
 
 
 def pobarvanih_polj(sahovnica):
-    num = 0
-    for polje, barva_polja in sahovnica.items():
-        if barva_polja:
-            num += 1
-    return num
+    return len(sahovnica)
 
 
 def nepobarvanih_polj(sahovnica):

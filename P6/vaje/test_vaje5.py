@@ -39,6 +39,10 @@ def freq(xs):
     return ctr"""
 
 
+def freq2(xs):
+    return collections.Counter(xs).most_common()
+
+
 def naj_freq(ctr):
     return ctr.most_common(1)[0][0]
     """naj = 0
@@ -51,6 +55,17 @@ def naj_freq(ctr):
 
 def najpogostejse(s):
     return naj_freq(freq(s.split())), naj_freq(freq(s))
+
+
+def najpogostejse_urejene(s):
+    words = []
+    chars = []
+    print(freq2(s))
+    for word, num in freq2(s.split()):
+        words.append(word)
+    for char, num in freq2(s):
+        chars.append(char)
+    return words, chars
 
 
 def najpogostejse2(s):
