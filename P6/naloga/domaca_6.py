@@ -57,6 +57,10 @@ def polja_po_barvah(sahovnica):
     return sez
 
 
+#def prestej_barve(sahovnica):
+#    return collections.Counter(sahovnica.values())
+
+
 class TestBarvanje(unittest.TestCase):
     def test_barvanje(self):
         self.assertEqual(
