@@ -1,0 +1,15 @@
+v format funkciji ^ - sredinska poravnava
+{:5.2f} - 5 mest, 2 decimalki, f oznauje necela števila
+
+dolžina "\n" = 1
+
+.strip() - odstrani presledke in \n
+
+list(open("planeti.txt")) - Dobiš seznam vrstic iz datoteke
+
+file.readline() - dobiš naslednjo vrstico
+file.readlines() - dobiš vrstice v seznam
+file.read() - shrani v 1 string celotno datoteko
+file.write("String") - piši v datoteko, mode mora biti W open("file.txt", "w+")
+file.close() - Zapre datoteko in izvede zapisovanje
+file.flush() - prisili da zapiše
