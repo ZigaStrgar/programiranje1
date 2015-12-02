@@ -1,0 +1,7 @@
+izraz1 if pogoj else izraz2 - Enovrstičen IF
+
+all() - "Baje je bedna", pove če so vsi elementi seznama resnični - kot in v DS
+
+any() - samo da je eden true vrne true - kot ali v DS
+
+yield - returna ampak naslednič funkcija teče od tega yield-a naprej
