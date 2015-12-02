@@ -1,0 +1,5 @@
+Fucked up lession
+
+t = v  # Sta dobesedno ista. En objekt v pythonu
+
+t is v pokaže istost, ne enakosti
