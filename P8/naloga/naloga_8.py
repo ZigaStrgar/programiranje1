@@ -43,8 +43,7 @@ def west(x, y, vrednost):
 def premakni(plosca, x, y):
     smer, vrednost = preberi(plosca, x, y)
     options = {'S': north, 'J': south, 'V': east, 'Z': west}
-    if smer in options:
-        return options[smer](x, y, vrednost)
+    return options[smer](x, y, vrednost)
 
 
 def dolzina_poti(plosca, x, y):
@@ -124,13 +123,12 @@ def dolzina_cikla(plosca, x, y):
         x, y = premakni(plosca, x, y)
         if (x, y) in prepotovano:
             ox, oy = x, y
-            x, y = premakni(plosca, x, y)
-            cikel = 0
+            cikel = 1
             while True:
-                cikel += 1
+                x, y = premakni(plosca, x, y)
                 if x == ox and y == oy:
                     break
-                x, y = premakni(plosca, x, y)
+                cikel += 1
             return cikel
         prepotovano.append((x, y))
 
@@ -169,9 +167,9 @@ def razbij(d):
 
 
 def igra(plosca, zacetki):
-    loops = 0
-    zacetkik = [x for x in range(0, len(zacetki))]
-    while len(zacetki) > 1:
+    loops = 0  # Potrebno za oceno 11
+    zacetkik = [x for x in range(len(zacetki))] # Zaporedni indexi igralcev
+    while len(zacetki) > 1 and loops < polj(plosca):
         start = 0
         while start < len(zacetki):
             x, y = razbij(zacetki[start])
@@ -182,7 +180,7 @@ def igra(plosca, zacetki):
                     del zacetki[odstrani_pri]
                     del zacetkik[odstrani_pri]
                     if odstrani_pri < start:
-                        start -= 1
+                        start -= 1  # Odstranim za trenutnim. Brez tega preskočim enega
                 zacetki[start] = (x, y)
             else:
                 del zacetki[start]
@@ -190,8 +188,6 @@ def igra(plosca, zacetki):
                 start -= 1
             start += 1
         loops += 1
-        if loops > polj(plosca):
-            break
     return set(zacetkik)
 
 
