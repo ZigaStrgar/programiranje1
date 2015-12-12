@@ -5,3 +5,5 @@ all() - "Baje je bedna", pove če so vsi elementi seznama resnični - kot in v D
 any() - samo da je eden true vrne true - kot ali v DS
 
 yield - returna ampak naslednič funkcija teče od tega yield-a naprej
+
+return {(x, y) for x in range(sirina(plosca) for y in range(visina(plosca)) if ciklicno(plosca, x, y)}

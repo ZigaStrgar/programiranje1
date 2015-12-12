@@ -1,0 +1,1 @@
+vsa = vsa | imena(otrok)  # | predstavlja "unijo"
