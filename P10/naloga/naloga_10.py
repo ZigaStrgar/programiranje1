@@ -59,6 +59,9 @@ def ime_najml_starsa(oseba):
         return ime
 
 
+print(starsi_pred("Elizabeta", 20))
+
+
 import unittest
 from unittest import mock
 
