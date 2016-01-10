@@ -363,13 +363,8 @@ def compute(var, exprs, variables):
     """
     op, arg = exprs[var]
     for e in arg:
-        if not str(e).isdigit():
-            if e not in variables.keys():
+        if not str(e).isdigit() and e not in variables:
                 variables[e] = compute(e, exprs, variables)
-            else:
-                pass
-        else:
-            pass
     return compute_expr(op, get_values(arg, variables))
 
 
@@ -420,6 +415,16 @@ def computable(exprs):
     Returns:
         bool: `True` if expressions can be evaluated, `False` otherwise
 """
+    if not check_names(exprs):
+        return False
+    variables = {}
+    dexprs = dict_expr(exprs)
+    try:
+        for var, op, args in exprs:
+            compute(var, dexprs, variables)
+    except:
+        return False
+    return True
 
 
 import unittest

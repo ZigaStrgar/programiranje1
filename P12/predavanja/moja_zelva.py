@@ -2,8 +2,6 @@ from math import radians, cos, sin
 
 import risar
 
-from risar import stoj
-
 
 class Turtle:
     def __init__(self):
@@ -16,6 +14,8 @@ class Turtle:
         self.head = risar.krog(0, 0, 3, risar.zelena, 3)
         self.update()
         self.pause = 0
+        self.color = "bela"
+        self.width = 1
 
     def set_pause(self, n):
         self.pause = n
@@ -68,3 +68,11 @@ class Turtle:
 
     def right(self):
         self.turn(90)
+
+    def turnAround(self):
+        self.turn(180)
+
+
+t = Turtle()
+t.forward(100)
+risar.stoj()
