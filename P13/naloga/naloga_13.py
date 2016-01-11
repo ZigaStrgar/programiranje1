@@ -214,7 +214,7 @@ class TestParkelj(unittest.TestCase):
         for i in range(3):
             m.obdaruj(i, 0)
             m.obdaruj(i, 1)
-        self.assertTrue(hitri_parkelj(0, 0, m) in (">>^<<", "^>>v<"))
+        self.assertTrue(hitri_parkelj(0, 0, m) in (">>^<<", "^>>v<", "^>v>^"))
 
         n = Mesto()
         n.obdaruj(2, 0)
