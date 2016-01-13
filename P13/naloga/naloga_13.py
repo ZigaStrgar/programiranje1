@@ -22,14 +22,16 @@ class Bozicek:
         self.city = city
 
     def premik(self, smer):
-        if smer == "^":
-            self.y += 1 * self.hitrost()
-        elif smer == "<":
-            self.x -= 1 * self.hitrost()
-        elif smer == ">":
-            self.x += 1 * self.hitrost()
-        else:
-            self.y -= 1 * self.hitrost()
+        self.x += (smer == '>') - (smer == "<")
+        self.y += (smer == '^') - (smer == 'v')
+        # if smer == "^":
+        #    self.y += 1 * self.hitrost()
+        # elif smer == "<":
+        #    self.x -= 1 * self.hitrost()
+        # elif smer == ">":
+        #    self.x += 1 * self.hitrost()
+        # else:
+        #    self.y -= 1 * self.hitrost()
 
     def premiki(self, path):
         for c in list(path):
