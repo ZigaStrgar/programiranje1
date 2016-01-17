@@ -1,0 +1,5 @@
+def f(a, b, *s):
+    s je poljubno število argumentov v terki
+
+raise "sproži" napako
+raise IndexError("Napačen indeks")

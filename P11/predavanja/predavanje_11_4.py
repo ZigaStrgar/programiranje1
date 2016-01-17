@@ -1,6 +1,5 @@
 import risar
 from random import randint, choice
-import pillow
 Ax, Ay = 10, 475
 Bx, By = 537, 475
 Cx, Cy = 271, 10
