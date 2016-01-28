@@ -1,0 +1,4 @@
+Tcl/Tk je že v Pythonu sam je zanič
+wxWidgets že bolj resna
+Qt OP (delo z DB, zvokom, ...)
+QtGui, uic import

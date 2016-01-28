@@ -76,3 +76,14 @@ class Turtle:
 t = Turtle()
 t.forward(100)
 risar.stoj()
+
+
+class Neki:
+    def __init__(self):
+        self.ime = "Neki"
+
+    def ppp(self):
+        return self.ime
+
+n = Neki()
+n.ppp()
